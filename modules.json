@@ -82,5 +82,13 @@
     "tabs": [
       "Repl"
     ]
+  },
+  "remote_execution": {
+    "tabs": []
+  },
+  "physics_2d": {
+    "tabs": [
+      "physics_2d"
+    ]
   }
 }
