@@ -1,4 +1,4 @@
-require => {
+export default require => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -7,7 +7,7 @@ require => {
     get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
   }) : x)(function (x) {
     if (typeof require !== "undefined") return require.apply(this, arguments);
-    throw new Error('Dynamic require of "' + x + '" is not supported');
+    throw Error('Dynamic require of "' + x + '" is not supported');
   });
   var __export = (target, all) => {
     for (var name in all) __defProp(target, name, {
@@ -40,4 +40,4 @@ require => {
   };
   var ev3_default = ev3DeviceType;
   return __toCommonJS(remote_execution_exports);
-}
+};

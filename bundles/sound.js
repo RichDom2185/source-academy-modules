@@ -1,4 +1,4 @@
-require => {
+export default require => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -10,7 +10,7 @@ require => {
     get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
   }) : x)(function (x) {
     if (typeof require !== "undefined") return require.apply(this, arguments);
-    throw new Error('Dynamic require of "' + x + '" is not supported');
+    throw Error('Dynamic require of "' + x + '" is not supported');
   });
   var __export = (target, all) => {
     for (var name in all) __defProp(target, name, {
@@ -67,6 +67,7 @@ require => {
     trombone: () => trombone,
     violin: () => violin
   });
+  var import_context = __toESM(__require("js-slang/context"), 1);
   var import_list = __require("js-slang/dist/stdlib/list");
   var FastBase64 = {
     chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
@@ -151,7 +152,6 @@ require => {
     };
     if (data instanceof Array) this.Make(data);
   }
-  var import_context = __toESM(__require("js-slang/context"), 1);
   var FS = 44100;
   var fourier_expansion_level = 5;
   var audioPlayed = [];
@@ -179,9 +179,9 @@ require => {
     } else if (permission === false) {
       throw new Error(`Permission has been denied.
 
-		    Re-start browser and call init_record();
+        Re-start browser and call init_record();
 
-		    to obtain permission to use microphone.`);
+        to obtain permission to use microphone.`);
     }
   }
   var globalStream;
@@ -275,8 +275,8 @@ require => {
     };
   }
   function make_sound(wave, duration) {
-    if (duration <= 0) {
-      throw new Error("Sound duration must be greater than 0");
+    if (duration < 0) {
+      throw new Error("Sound duration must be greater than or equal to 0");
     }
     return (0, import_list.pair)(t => t >= duration ? 0 : wave(t), duration);
   }
@@ -447,7 +447,8 @@ require => {
       return make_sound(new_wave, new_dur);
     }
     const mushed_sounds = (0, import_list.accumulate)(simul_two, silence_sound(0), list_of_sounds);
-    const normalised_wave = t => (0, import_list.head)(mushed_sounds)(t) / (0, import_list.length)(list_of_sounds);
+    const len = (0, import_list.length)(list_of_sounds);
+    const normalised_wave = t => (0, import_list.head)(mushed_sounds)(t) / len;
     const highest_duration = (0, import_list.tail)(mushed_sounds);
     return make_sound(normalised_wave, highest_duration);
   }
@@ -548,4 +549,4 @@ require => {
     return stacking_adsr(sawtooth_sound, midi_note_to_frequency(note), duration, (0, import_list.list)(adsr(0.35, 0, 1, 0.15), adsr(0.35, 0, 1, 0.15), adsr(0.45, 0, 1, 0.15), adsr(0.45, 0, 1, 0.15)));
   }
   return __toCommonJS(sound_exports);
-}
+};
