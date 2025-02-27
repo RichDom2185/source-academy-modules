@@ -116,5 +116,10 @@
     "tabs": [
       "Nbody"
     ]
+  },
+  "unittest": {
+    "tabs": [
+      "Unittest"
+    ]
   }
 }

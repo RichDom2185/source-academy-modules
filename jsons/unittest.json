@@ -1,0 +1,8 @@
+{
+  "default": {
+    "kind": "variable",
+    "name": "default",
+    "description": "No description available",
+    "type": "Object"
+  }
+}
